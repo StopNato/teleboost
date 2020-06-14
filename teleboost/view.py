@@ -59,11 +59,16 @@ class TeleboostViewer:
             except Exception as ex:
                 return ViewResult(ok=False, proxy=proxy, error=str(ex))
 
-    def prepare_tasks(self, session: ClientSession):
+    def prepare_tasks(self, session: ClientSession, bound: bool = True):
+        if bound:
+            add_view = self.add_view
+        else:
+            add_view = self.bound_add_view
+
         tasks = []
         for proxy in self.proxies[: self.view_count]:
             tasks.append(
-                self.add_view(
+                add_view(
                     session,
                     proxy,
                     user_agent=user_agent_provider.get_random_user_agent(),
