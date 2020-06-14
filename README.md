@@ -13,7 +13,7 @@
 ## Install
 
 ```sh
-pip install https://github.com/crinny/teleboost/archive/master.zip
+pip install -U teleboost
 ```
 
 ## Usage
