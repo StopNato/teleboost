@@ -30,7 +30,7 @@ def read_file_lines(path: Union[str, Path]) -> List[str]:
             proxy_url = URL(line)
             if not proxy_url.is_absolute():
                 # TODO: logger.warn(...)
-                proxy_url = URL(f"http://{proxy_url}")
+                proxy_url = URL(f"http://{line}")
             if proxy_url.scheme not in ALLOWED_PROXY_SCHEME:
                 # TODO: logger.warn(...)
                 continue
