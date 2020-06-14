@@ -18,6 +18,9 @@ class TeleboostViewer:
         self.semaphore = asyncio.Semaphore(1000)
 
     async def add_view(self, session: ClientSession, proxy: str, user_agent: str):
+        if not proxy.startswith("http://"):
+            proxy = f"http://{proxy}"
+
         async with session.get(
             f"https://t.me/{self.channel}/{self.post_id}",
             params={"embed": 1},
