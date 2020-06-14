@@ -1,5 +1,5 @@
 # Lines starting with # and empty lines will be ignored
 
-login:password@ip:port
-login:password@ip:port
-login:password@ip:port
+http://login:password@ip:port
+http://login:password@ip:port
+http://login:password@ip:port

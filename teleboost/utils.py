@@ -1,7 +1,6 @@
 import re
-
-from typing import List, Tuple, Union
 from pathlib import Path
+from typing import List, Tuple, Union
 
 from .misc import post_url_re
 
@@ -9,7 +8,7 @@ from .misc import post_url_re
 def parse_telegram_post_url(url: str) -> Tuple[str, int]:
     res = re.search(post_url_re, url)
     if res is None:
-        raise Exception('Invalid url')
+        raise Exception("Invalid url")
     channel, post_id = res.groups()
     return channel, int(post_id)
 

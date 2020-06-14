@@ -1,9 +1,9 @@
-import re
 import asyncio
+import re
+from pathlib import Path
+from typing import Optional
 
 from cleo import Command  # type: ignore
-from typing import Optional
-from pathlib import Path
 from yaspin import yaspin  # type: ignore
 
 from ..utils import read_file_lines, parse_telegram_post_url
@@ -18,9 +18,9 @@ class ViewCommand(Command):
         Adds views to а post
 
         view
-            {url : Who do you want to greet?}
+            {url : Telegram post URL}
             {--p|proxies=?* : Proxies file(s)}
-            {--c|count=? : How many views you want to add?}
+            {--c|count=? : How many views do you want to add?}
     """
 
     def handle(self) -> Optional[int]:

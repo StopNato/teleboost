@@ -1,7 +1,0 @@
-click
-loguru
-requests
-colorama
-random_user_agent
-pysocks
-yaspin

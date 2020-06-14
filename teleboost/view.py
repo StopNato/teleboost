@@ -1,9 +1,10 @@
-import distutils.util
 import asyncio
+import distutils.util
 import re
-
 from typing import List
+
 from aiohttp import ClientSession, DummyCookieJar, ClientResponse
+
 from .misc import user_agent_provider, key_re
 from .models import ViewResult
 
@@ -28,7 +29,7 @@ class TeleboostViewer:
 
         res = re.search(key_re, embed_post)
         if res is None:
-            return ViewResult(ok=False, proxy=proxy, error='Key not found')
+            return ViewResult(ok=False, proxy=proxy, error="Key not found")
         key = res.group(1)
 
         async with session.get(
