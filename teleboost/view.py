@@ -4,6 +4,7 @@ import re
 from typing import List
 
 from aiohttp import ClientSession, DummyCookieJar, ClientResponse
+from aiosocksy.connector import ProxyConnector, ProxyClientRequest
 
 from .misc import user_agent_provider, key_re
 from .models import ViewResult
@@ -18,9 +19,6 @@ class TeleboostViewer:
         self.semaphore = asyncio.Semaphore(1000)
 
     async def add_view(self, session: ClientSession, proxy: str, user_agent: str):
-        if not proxy.startswith("http://"):
-            proxy = f"http://{proxy}"
-
         async with session.get(
             f"https://t.me/{self.channel}/{self.post_id}",
             params={"embed": 1},
@@ -77,12 +75,22 @@ class TeleboostViewer:
         return tasks
 
     async def __aiter__(self):
-        async with ClientSession(cookie_jar=DummyCookieJar()) as session:
+        # TODO: rework proxy
+        async with ClientSession(
+            cookie_jar=DummyCookieJar(),
+            connector=ProxyConnector(),
+            request_class=ProxyClientRequest,
+        ) as session:
             tasks = self.prepare_tasks(session)
             for result in asyncio.as_completed(tasks):
                 yield await result
 
     async def run(self):
-        async with ClientSession(cookie_jar=DummyCookieJar()) as session:
+        # TODO: rework proxy
+        async with ClientSession(
+            cookie_jar=DummyCookieJar(),
+            connector=ProxyConnector(),
+            request_class=ProxyClientRequest,
+        ) as session:
             tasks = self.prepare_tasks(session)
             return await asyncio.gather(*tasks)
