@@ -7,7 +7,7 @@ from .misc import post_url_re
 
 
 __all__ = ("parse_telegram_post_url", "read_file_lines")
-ALLOWED_PROXY_SCHEME = ("http", "socks5", "socks4", "socks4a")
+ALLOWED_PROXY_SCHEME = ("http", "socks5", "socks4")
 
 
 def parse_telegram_post_url(url: str) -> Tuple[str, int]:

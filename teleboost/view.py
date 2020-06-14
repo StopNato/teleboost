@@ -59,9 +59,9 @@ class TeleboostViewer:
 
     def prepare_tasks(self, session: ClientSession, bound: bool = True):
         if bound:
-            add_view = self.add_view
-        else:
             add_view = self.bound_add_view
+        else:
+            add_view = self.add_view
 
         tasks = []
         for proxy in self.proxies[: self.view_count]:
