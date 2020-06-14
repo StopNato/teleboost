@@ -140,3 +140,7 @@ cython_debug/
 # IDE
 .vscode
 .idea
+
+proxies.txt
+proxies
+poetry.lock
