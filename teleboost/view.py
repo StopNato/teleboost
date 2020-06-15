@@ -50,16 +50,16 @@ class TeleboostViewer:
             ok=ok, proxy=proxy, error=not ok and "Invalid telegram response"
         )
 
-    async def bound_add_view(self, session: ClientSession, proxy: str, user_agent: str):
+    async def safe_add_view(self, session: ClientSession, proxy: str, user_agent: str):
         async with self.semaphore:
             try:
                 return await self.add_view(session, proxy, user_agent)
             except Exception as ex:
                 return ViewResult(ok=False, proxy=proxy, error=str(ex))
 
-    def prepare_tasks(self, session: ClientSession, bound: bool = True):
-        if bound:
-            add_view = self.bound_add_view
+    def prepare_tasks(self, session: ClientSession, safe: bool = True):
+        if safe:
+            add_view = self.safe_add_view
         else:
             add_view = self.add_view
 
