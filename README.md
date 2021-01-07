@@ -19,7 +19,7 @@ pip install -U teleboost
 ## Usage
 
 ```sh
-python -m teleboost
+python -m teleboost view https://t.me/cwinny/12 -p http_proxies.txt
 ```
 
 ## Authors
